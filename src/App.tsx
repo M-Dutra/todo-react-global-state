@@ -1,13 +1,24 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { TodoForm } from './components/TodoForm';
 import { TodoList } from './components/TodoList';
 import type { TodoInput } from './schema/todoSchema';
+import { useDispatch, useSelector } from 'react-redux';
+import type { AppDispatch, RootState } from './store/store';
+import { addTodo } from './store/todoSlice';
+
 
 function App() {
-  const [todos, setTodos] = useState<TodoInput[]>([]);
+  const todos = useSelector((state: RootState) => state.todos.todos)
+  const dispatch = useDispatch<AppDispatch>();
 
-  const handleAddTodo = (todo: TodoInput) => {
-    setTodos((prev) => [todo, ...prev]);
+  // const [todos, setTodos] = useState<TodoInput[]>([]);
+
+  // const handleAddTodo = (todo: TodoInput) => {
+  //   setTodos((prev) => [todo, ...prev]);
+  // };
+
+    const handleAddTodo = (todo: TodoInput) => {
+    dispatch(addTodo(todo));
   };
 
   return (
