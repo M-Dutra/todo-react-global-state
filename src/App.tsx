@@ -16,19 +16,13 @@ function App() {
 
   const [filter, setFilter] = useState<Filter>("all");
 
-   const filteredTodos = todos.filter((todo) => {
+  const filteredTodos = todos.filter((todo) => {
     if (filter === "completed") return todo.completed;
     if (filter === "incomplete") return !todo.completed;
-    return true; // "all"
+    return true; 
   });
 
-  // const [todos, setTodos] = useState<TodoInput[]>([]);
-
-  // const handleAddTodo = (todo: TodoInput) => {
-  //   setTodos((prev) => [todo, ...prev]);
-  // };
-
-    const handleAddTodo = (todo: TodoInput) => {
+  const handleAddTodo = (todo: TodoInput) => {
     dispatch(addTodo(todo));
   };
 
@@ -39,7 +33,6 @@ function App() {
   const handleTodoCompleted = (id: string) => {
     dispatch(markAsCompleted(id));
   }
-   
 
   return (
     <div className="min-h-screen bg-gray-100 p-4 flex flex-col items-center">
