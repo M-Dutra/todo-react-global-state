@@ -5,9 +5,11 @@ import type { Todo } from '../store/todoSlice';
 interface TodoListProps {
   todos: Todo[];
   onDeleteTodo: (id: string) => void; 
+  onTodoCompleted: (id: string) => void; 
+
 }
 
-export const TodoList: React.FC<TodoListProps> = ({ todos, onDeleteTodo }) => {
+export const TodoList: React.FC<TodoListProps> = ({ todos, onDeleteTodo, onTodoCompleted }) => {
   if (todos.length === 0) {
     return <p>Nenhuma tarefa adicionada.</p>;
   }
@@ -29,6 +31,9 @@ export const TodoList: React.FC<TodoListProps> = ({ todos, onDeleteTodo }) => {
             >
               Remover
             </Button>
+            <FormGroup>
+              <FormControlLabel control={<Checkbox color="success"  />} label="Completed" sx={{ ml: 5 }} onClick={() =>onTodoCompleted(todo.id)}/>
+            </FormGroup>
           </ListItem>
           
         ))}
