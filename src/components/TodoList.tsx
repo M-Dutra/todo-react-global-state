@@ -15,6 +15,7 @@ export const TodoList: React.FC<TodoListProps> = ({ todos, onDeleteTodo, onTodoC
   }
 
   return (
+    
     <Paper sx={{ maxWidth: 400 }}>
       <List>
         {todos.map((todo, index) => (
@@ -32,7 +33,12 @@ export const TodoList: React.FC<TodoListProps> = ({ todos, onDeleteTodo, onTodoC
               Remover
             </Button>
             <FormGroup>
-              <FormControlLabel control={<Checkbox color="success"  />} label="Completed" sx={{ ml: 5 }} onClick={() =>onTodoCompleted(todo.id)}/>
+              <FormControlLabel 
+                control={<Checkbox color="success" onChange={() =>onTodoCompleted(todo.id)} checked={todo.completed}/>} 
+                label="Completed" 
+                sx={{ ml: 5 }} 
+                
+              />
             </FormGroup>
           </ListItem>
           
