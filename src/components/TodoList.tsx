@@ -1,12 +1,13 @@
 import React from 'react';
-import type { TodoInput } from '../schema/todoSchema';
-import { List, ListItem, ListItemText, Paper } from '@mui/material';
+import { Button, Checkbox, FormControlLabel, FormGroup, List, ListItem, ListItemText, Paper } from '@mui/material';
+import type { Todo } from '../store/todoSlice';
 
 interface TodoListProps {
-  todos: TodoInput[];
+  todos: Todo[];
+  onDeleteTodo: (id: string) => void; 
 }
 
-export const TodoList: React.FC<TodoListProps> = ({ todos }) => {
+export const TodoList: React.FC<TodoListProps> = ({ todos, onDeleteTodo }) => {
   if (todos.length === 0) {
     return <p>Nenhuma tarefa adicionada.</p>;
   }
@@ -20,7 +21,16 @@ export const TodoList: React.FC<TodoListProps> = ({ todos }) => {
               primary={todo.title}
               secondary={todo.description}
             />
+             <Button
+              variant="outlined"
+              color="error"
+              onClick={() => onDeleteTodo(todo.id)}
+              
+            >
+              Remover
+            </Button>
           </ListItem>
+          
         ))}
       </List>
     </Paper>
